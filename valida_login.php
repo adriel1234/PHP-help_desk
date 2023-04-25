@@ -1,4 +1,9 @@
 <?php 
+session_start();
+
+
+//variavel que verifica se a autenticacao foi realizada
+$usuario_autenticado = false;
 
 $usuarios_app = array(
 array('email' => 'adm@teste.com.br','senha'=>'123456'),
@@ -10,8 +15,8 @@ print_r($usuarios_app);
 echo '</pre>';
 
 */
-    //varia que verifica se a autenticacao foi realizada
-    $usuario_autenticado = false;
+    
+   
 
 foreach($usuarios_app as $user){
 
@@ -19,11 +24,14 @@ foreach($usuarios_app as $user){
         $usuario_autenticado = true;
     }
 }
+
 if($usuario_autenticado){
     echo 'Usuário autenticado';
+    $_SESSION['autenticado'] = 'SIM';
 
 }else{
     header('Location: index.php?login=erro');
+    $_SESSION['autenticado'] = 'NÃO';
 }
 
 
